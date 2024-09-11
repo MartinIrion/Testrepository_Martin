@@ -23,6 +23,12 @@ jobs:
 
     - name: Build the application
       run: g++ -o HelloWorld main.cpp
+      
+    - name: Build the tests
+      run: g++ -o tests test.cpp
 
     - name: Run the application
       run: ./HelloWorld
+
+    - name: Run the tests
+      run: ./tests && echo "All tests passed!"
