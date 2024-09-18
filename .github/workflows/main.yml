@@ -19,10 +19,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y g++
+      run: sudo apt-get update && sudo apt-get install -y clang-tidy g++
 
     - name: Build the application
       run: g++ -o HelloWorld main.cpp
+
+    - name: Run clang-tidy
+      run: clang-tidy main.cpp -- -std=c++17
       
     - name: Build the tests
       run: g++ -o tests test.cpp
