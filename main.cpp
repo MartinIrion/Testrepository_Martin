@@ -1,7 +1,8 @@
 // main.cpp
 #include <iostream>
 
-int main() {
+auto main() -> int
+{
     std::cout << "Hello, GitHub CI!" << std::endl;
     return 0;
 }
