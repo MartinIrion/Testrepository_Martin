@@ -37,7 +37,7 @@ jobs:
    #   run: ./tests && echo "All tests passed!"
    
     - name: Zip the executable
-      run: zip setup.zip Fahrzeugkonfigurator
+      run: zip setup.zip Audikonfigurator_CICD
       
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
