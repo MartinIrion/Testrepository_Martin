@@ -24,8 +24,8 @@ jobs:
     - name: Build the application
       run: g++ -o Audikonfigurator_CICD Fahrzeugconfig.cpp
 
-   # - name: Run clang-tidy
-   #   run: clang-tidy main.cpp -- -std=c++17
+    - name: Run clang-tidy
+      run: clang-tidy fahrzeugconfig.cpp -- -std=c++17
       
    # - name: Build the tests
    #   run: g++ -o tests test.cpp
