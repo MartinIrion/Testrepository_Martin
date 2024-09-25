@@ -35,6 +35,15 @@ jobs:
 
    # - name: Run the tests
    #   run: ./tests && echo "All tests passed!"
+   
+    - name: Zip the executable
+      run: zip setup.zip Fahrzeugkonfigurator
+      
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: setup-zip
+        path: ./setup.zip
 
   release:
     needs: build
