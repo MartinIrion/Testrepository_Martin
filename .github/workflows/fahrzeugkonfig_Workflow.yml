@@ -1,14 +1,14 @@
-# .github/workflows/cpp-ci.yml
+# .github/workflows/fahrzeugkonfig_Workflow.yml
 
 name: Fahrzeugkonfig
 
 on:
   push:
     branches:
-      - main
+      - Fahrzeugkonfiguration
   pull_request:
     branches:
-      - main
+      - Fahrzeugkonfiguration
 
 jobs:
   build:
