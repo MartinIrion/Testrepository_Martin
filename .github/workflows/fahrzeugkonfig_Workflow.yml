@@ -1,0 +1,66 @@
+# .github/workflows/fahrzeugkonfig_Workflow.yml
+
+name: Fahrzeugkonfig
+
+on:
+  push:
+    branches:
+      - Fahrzeugkonfiguration
+  pull_request:
+    branches:
+      - Fahrzeugkonfiguration
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y clang clang-tidy g++
+
+    - name: Build the application
+      run: g++ -o Audikonfigurator_CICD Fahrzeugconfig.cpp
+
+    - name: Run clang-tidy
+      run: clang-tidy Fahrzeugconfig.cpp -- -std=c++17
+      
+   # - name: Build the tests
+   #   run: g++ -o tests test.cpp
+
+    - name: Run the application
+      run: ./Audikonfigurator_CICD
+
+   # - name: Run the tests
+   #   run: ./tests && echo "All tests passed!"
+   
+    - name: Zip the executable
+      run: zip setup.zip Audikonfigurator_CICD
+      
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: setup-zip
+        path: ./setup.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: setup-zip
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1 
+      env:
+        GITHUB_TOKEN: ${{ secrets.EIGENES_TOKEN_SECRET }}
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        name: "Release v1.0.${{ github.run_number }}"
+        draft: false
+        prerelease: false
