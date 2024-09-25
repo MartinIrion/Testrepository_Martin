@@ -1,0 +1,37 @@
+# .github/workflows/cpp-ci.yml
+
+name: C++ CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y clang clang-tidy g++
+
+    - name: Build the application
+      run: g++ -o HelloWorld main.cpp
+
+    - name: Run clang-tidy
+      run: clang-tidy main.cpp -- -std=c++17
+      
+    - name: Build the tests
+      run: g++ -o tests test.cpp
+
+    - name: Run the application
+      run: ./HelloWorld
+
+    - name: Run the tests
+      run: ./tests && echo "All tests passed!"
