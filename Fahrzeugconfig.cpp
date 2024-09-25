@@ -10,7 +10,7 @@ private:
     std::string felgen;
     std::string innenausstattung;
 
-    // Preise für die Features
+    // Preise fÃ¼r die Features
     double basisPreis;
     std::map<std::string, double> motorPreise;
     std::map<std::string, double> felgenPreise;
@@ -20,7 +20,7 @@ public:
     // Konstruktor
     FahrzeugKonfiguration(const std::string& m, double basisP)
         : modell(m), basisPreis(basisP) {
-        // Standardpreise für die verschiedenen Features
+        // Standardpreise fÃ¼r die verschiedenen Features
         motorPreise = {
             {"V6 Benzin", 5000.0},
             {"V8 Benzin", 8000.0},
@@ -41,7 +41,7 @@ public:
         };
     }
 
-    // Set-Methoden für die Features
+    // Set-Methoden fÃ¼r die Features
     void setFarbe(const std::string& f) {
         farbe = f;
     }
@@ -50,7 +50,7 @@ public:
         if (motorPreise.find(mo) != motorPreise.end()) {
             motor = mo;
         } else {
-            std::cout << "Ungültiger Motor gewählt!\n";
+            std::cout << "UngÃ¼ltiger Motor gewÃ¤hlt!\n";
         }
     }
 
@@ -58,7 +58,7 @@ public:
         if (felgenPreise.find(fe) != felgenPreise.end()) {
             felgen = fe;
         } else {
-            std::cout << "Ungültige Felgen gewählt!\n";
+            std::cout << "UngÃ¼ltige Felgen gewÃ¤hlt!\n";
         }
     }
 
@@ -66,7 +66,7 @@ public:
         if (innenausstattungPreise.find(ia) != innenausstattungPreise.end()) {
             innenausstattung = ia;
         } else {
-            std::cout << "Ungültige Innenausstattung gewählt!\n";
+            std::cout << "UngÃ¼ltige Innenausstattung gewÃ¤hlt!\n";
         }
     }
 
@@ -74,7 +74,7 @@ public:
     double berechneGesamtPreis() const {
         double gesamtPreis = basisPreis;
 
-        // Preis der gewählten Features hinzufügen
+        // Preis der gewÃ¤hlten Features hinzufÃ¼gen
         if (motorPreise.find(motor) != motorPreise.end()) {
             gesamtPreis += motorPreise.at(motor);
         }
@@ -107,7 +107,7 @@ int main() {
     FahrzeugKonfiguration config("Audi A6", 45000.0);
 
     // Features setzen
-    config.setFarbe("Weiß");
+    config.setFarbe("WeiÃŸ");
     config.setMotor("V6 Benzin");
     config.setFelgen("20 Zoll Chromfelgen");
     config.setInnenausstattung("Leder, Schwarz");
@@ -117,5 +117,3 @@ int main() {
 
     return 0;
 }
-@MartinIrion
-Comment
